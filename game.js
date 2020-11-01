@@ -78,8 +78,16 @@ getNextQuestions = () => {
 
             const selectedChoice = e.target;
             const selectedAnswer = selectedChoice.dataset["number"];
-            console.log(selectedAnswer);
-            getNextQuestions();
+            
+            const classToApply = selectedAnswer == currentQuestion.answer 
+                               ? "correct" : "incorrect";
+
+            selectedChoice.parentElement.classList.add(classToApply);
+            setTimeout(() => {
+                selectedChoice.parentElement.classList.remove(classToApply);
+                getNextQuestions();
+            }, 1000)
+            
         });
     })
 }
